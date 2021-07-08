@@ -59,6 +59,37 @@ def getStakingLedger(variables):
 
     return _graphql_request(query, variables)
 
+def getPayouts(variables):
+    """Return the staking payouts."""
+    query = '''query($publicKey: String!, $blockHeight_gt: Int, $blockHeight_lte: Int) {
+    payouts(sortBy: BLOCKHEIGHT_DESC, query: {publicKey: $publicKey, AND: {blockHeight_gt: $blockHeight_gt, blockHeight_lte: $blockHeight_lte}}) {
+    payout
+    paymentHash {
+      amount
+      dateTime
+    }
+    blockHeight
+  }
+}
+'''
+
+    return _graphql_request(query, variables)
+
+def getLatestPayouts(variables):
+    """Return the staking payouts."""
+    query = '''query($publicKey: String!,) {
+    payouts(query: {publicKey: $publicKey}, sortBy: BLOCKHEIGHT_DESC, limit: 1) {
+      payout
+      paymentHash {
+        amount
+        dateTime
+      }
+      blockHeight
+    }
+}
+'''
+
+    return _graphql_request(query, variables)
 
 def getBlocks(variables):
     """Returns all blocks the pool won."""
