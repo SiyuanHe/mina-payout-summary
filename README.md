@@ -1,6 +1,9 @@
 ## MinaExplorer Account Payout History Script
 
-To run, change the settings to your requirements in `payout.py` specifying the account/public key you want to query
+To run, pls specifying the account/public key you want to query in `payout.py`
+```
+public_key = "B62qmQAFPta1Q3c7wXHxXRKnE3uWyBYZCLb8frdHEgavi3BbBVkpeC1"  # Public key 
+```
 
 ```
 pip3 install -r requirements.txt
@@ -24,4 +27,16 @@ fetching payouts for blocks between 500 and 0
 +------------+---------------+
 ```
 
+Pls note this repo is based on https://github.com/garethtdavies/mina-payout-script
+
+## Thought process
+1. the historical staking rewards will be given throught "payouts". 
+
+2. based on this doc: https://docs.minaexplorer.com/minaexplorer/exporting-data, we are able to fetch all the payouts. 
+
+3. overall algorithm
+   a. get the block height of the latest payout
+   b. start fetching payouts by chuncks starting from latest block height to "latest_block_height - chuck_size". and then aggegate the payout amounts by date. 
+   c. repeat b until we fetech all payouts when block height reaches 0
+   d. the reason to fetch by chunks is to avoid hitting performance issue of the backend. 
 
