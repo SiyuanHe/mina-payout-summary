@@ -30,8 +30,8 @@ except Exception as e:
 if not latestPayout["data"]["payouts"]:
     exit("there is no payouts in this account")
 
-#current_block_height = latestPayout["data"]["payouts"][0]["blockHeight"]
-current_block_height = 2000
+current_block_height = latestPayout["data"]["payouts"][0]["blockHeight"]
+#current_block_height = 2000
 
 # fetch payouts by block height size
 while(current_block_height > 0):
