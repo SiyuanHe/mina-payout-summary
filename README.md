@@ -5,6 +5,7 @@ To run, pls specifying the account/public key you want to query in `payout.py`
 public_key = "B62qmQAFPta1Q3c7wXHxXRKnE3uWyBYZCLb8frdHEgavi3BbBVkpeC1"  # Public key 
 ```
 
+and run the commands
 ```
 pip3 install -r requirements.txt
 python3 payout.py
